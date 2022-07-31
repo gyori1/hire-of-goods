@@ -30,7 +30,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public List<String> selectAllUsersEmail(){
-        return jdbcTemplate.query("Select email from users;", (rs, rowNum) -> rs.getString("email"));
+        return jdbcTemplate.query("Select email from users;",(rs, rowNum) -> rs.getString("email"));
     }
 }
 

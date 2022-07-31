@@ -1,57 +1,36 @@
 package ru.cft.hireofgoods.repository.model;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.math.BigDecimal;
 
-/*
-   JavaBean object that represents the Hire
-   Hire includes its id, lessorsId and renterId.
-
-*/
-
-
-
 public class HireEntity {
+    private Long hireId;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "hire_id")
-    private long hireId;
+    private Long traderId;
 
-    @Column(name = "lessor_id", nullable = false)
-    private long lessorId;
+    private Long consumerId;
 
-    @Column(name = "rentor_id", nullable = false)
-    private long renterId;
+    private Long itemId;
 
-    //TODO product id realization
+    private Integer state;
 
-    @Column(name = "coast", nullable = false)
-    private BigDecimal coast;
+    private BigDecimal cost;
 
+    private Long hiringDate;
 
-    @Column(name = "hire_date", nullable = false)
-    private BigDecimal hiringDate;
-
-    @Column(name = "return_date", nullable = false)
-    private BigDecimal returnDate;
-
+    private Long returnDate;
 
     public HireEntity(){}
 
-
-    public HireEntity(long hireId, long lessorId, long rentorId, BigDecimal coast, BigDecimal hiringDate, BigDecimal returnDate) {
+    public HireEntity(Long hireId, Long traderId, Long consumerId, int state, BigDecimal cost, Long hiringDate, Long returnDate, Long itemId) {
         this.hireId = hireId;
-        this.lessorId = lessorId;
-        this.renterId = rentorId;
-        this.coast = coast;
+        this.traderId = traderId;
+        this.consumerId = consumerId;
+        this.state = state;
+        this.cost = cost;
         this.hiringDate = hiringDate;
         this.returnDate = returnDate;
+        this.itemId = itemId;
     }
-
 
     public long getHireId() {
         return hireId;
@@ -61,49 +40,67 @@ public class HireEntity {
         this.hireId = hireId;
     }
 
-
-    public long getLessorId() {
-        return lessorId;
+    public long getItemId() {
+        return itemId;
     }
 
-    public void setLessorId(long lessorId) {
-        this.lessorId = lessorId;
+    public void setItemId(long itemId) {
+        this.itemId = itemId;
     }
 
-
-    public long getRenterId() {
-        return renterId;
+    public BigDecimal getCost() {
+        return cost;
     }
 
-    public void setRenterId(long renterId) {
-        this.renterId = renterId;
+    public void setCost(BigDecimal cost) {
+        this.cost = cost;
     }
 
+    public long getTraderId() {
+        return traderId;
+    }
+
+    public void setTraderId(long traderId) {
+        this.traderId = traderId;
+    }
+
+    public long getConsumerId() {
+        return consumerId;
+    }
+
+    public void setConsumerId(long consumerId) {
+        this.consumerId = consumerId;
+    }
 
     public BigDecimal getCoast() {
-        return coast;
+        return cost;
     }
 
     public void setCoast(BigDecimal coast) {
-        this.coast = coast;
+        this.cost = coast;
     }
 
-
-    public BigDecimal getHiringDate() {
+    public Long getHiringDate() {
         return hiringDate;
     }
 
-    public void setHiringDate(BigDecimal hiringDate) {
+    public void setHiringDate(Long hiringDate) {
         this.hiringDate = hiringDate;
     }
 
-
-    public BigDecimal getReturnDate() {
+    public Long getReturnDate() {
         return returnDate;
     }
 
-    public void setReturnDate(BigDecimal returnDate) {
+    public void setReturnDate(Long returnDate) {
         this.returnDate = returnDate;
     }
 
+    public int getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
 }
