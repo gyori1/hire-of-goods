@@ -3,13 +3,13 @@ package ru.cft.hireofgoods.repository.model;
 import java.math.BigDecimal;
 
 public class HireEntity {
-    private Long hireId;
+    private Long id;
+
+    private String itemName;
 
     private Long traderId;
 
     private Long consumerId;
-
-    private Long itemId;
 
     private Integer state;
 
@@ -21,31 +21,31 @@ public class HireEntity {
 
     public HireEntity(){}
 
-    public HireEntity(Long hireId, Long traderId, Long consumerId, int state, BigDecimal cost, Long hiringDate, Long returnDate, Long itemId) {
-        this.hireId = hireId;
+    public HireEntity(Long hireId, Long traderId, Long consumerId, int state, BigDecimal cost, Long hiringDate, Long returnDate, String itemName) {
+        this.id = hireId;
         this.traderId = traderId;
         this.consumerId = consumerId;
         this.state = state;
         this.cost = cost;
         this.hiringDate = hiringDate;
         this.returnDate = returnDate;
-        this.itemId = itemId;
+        this.itemName = itemName;
     }
 
-    public long getHireId() {
-        return hireId;
+    public long getId() {
+        return id;
     }
 
-    public void setHireId(long hireId) {
-        this.hireId = hireId;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public long getItemId() {
-        return itemId;
+    public String getItemName() {
+        return itemName;
     }
 
-    public void setItemId(long itemId) {
-        this.itemId = itemId;
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
     public BigDecimal getCost() {
@@ -70,14 +70,6 @@ public class HireEntity {
 
     public void setConsumerId(long consumerId) {
         this.consumerId = consumerId;
-    }
-
-    public BigDecimal getCoast() {
-        return cost;
-    }
-
-    public void setCoast(BigDecimal coast) {
-        this.cost = coast;
     }
 
     public Long getHiringDate() {

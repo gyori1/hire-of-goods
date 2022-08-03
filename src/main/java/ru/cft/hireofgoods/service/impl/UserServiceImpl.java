@@ -26,4 +26,9 @@ public class UserServiceImpl implements UserService {
     public List<String> getAllUsersEmail(){
         return userRepository.selectAllUsersEmail();
     }
+
+    @Override
+    public void createUser(String firstName, String lastName, String middleName, String login, String email) {
+        this.userRepository.insertUser(firstName, lastName, middleName, login, email);
+    }
 }
