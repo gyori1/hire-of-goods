@@ -6,6 +6,7 @@ import ru.cft.hireofgoods.repository.UserRepository;
 import ru.cft.hireofgoods.repository.model.UserEntity;
 import ru.cft.hireofgoods.service.UserService;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -22,7 +23,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.selectAll();
     }
 
-    @Override
+    @Override //
     public List<String> getAllUsersEmail(){
         return userRepository.selectAllUsersEmail();
     }
@@ -31,4 +32,23 @@ public class UserServiceImpl implements UserService {
     public void createUser(String firstName, String lastName, String middleName, String login, String email) {
         this.userRepository.insertUser(firstName, lastName, middleName, login, email);
     }
+
+    @Override
+    public void addMoneyToUser(long id, BigDecimal money) {
+        if(!userRepository.userIdExists(id)){
+            System.out.println("USER DOES NOT EXISTS");
+        }else {
+            this.userRepository.addMoneyToUserById(id, money);
+        }
+    }
+
+    @Override
+    public void takeMoneyFromUser(long id, BigDecimal money){
+        if(!userRepository.userIdExists(id)){
+            System.out.println("USER DOES NOT EXISTS");
+        }else {
+            this.userRepository.takeMoneyFromUserById(id, money);
+        }
+    }
+
 }

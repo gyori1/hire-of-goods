@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import ru.cft.hireofgoods.repository.UserRepository;
 import ru.cft.hireofgoods.repository.model.UserEntity;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
@@ -26,7 +27,7 @@ public class UserRepositoryImpl implements UserRepository {
         return jdbcTemplate.query("Select * from users;", rowMapper);
     }
 
-    @Override
+    @Override//
     public List<String> selectAllUsersEmail(){
         return jdbcTemplate.query("Select email from users;",(rs, rowNum) -> rs.getString("email"));
     }
@@ -37,6 +38,36 @@ public class UserRepositoryImpl implements UserRepository {
         this.jdbcTemplate.update(sql, firstName, lastName, middleName, email, login);
     }
 
+    @Override
+    public UserEntity getUserById(long id){
+        String sql = "select * from users where id = ?";
+        return this.jdbcTemplate.query(sql, preparedStatement -> preparedStatement.setLong(1, id), rowMapper).get(0);
+    }
 
+    @Override
+    public void addMoneyToUserById(long id, BigDecimal money){
+        String sql = "update users set balance = ((select balance from users where id = ?) + ?) where id = ?;";
+        this.jdbcTemplate.update(sql, preparedStatement -> {
+            preparedStatement.setLong(1, id);
+            preparedStatement.setBigDecimal(2, money);
+            preparedStatement.setLong(3, id);
+        });
+    }
+
+    @Override
+    public void takeMoneyFromUserById(long id, BigDecimal money){
+        String sql = "update users set balance = ((select balance from users where id = ?) - ?) where id = ?;";
+        this.jdbcTemplate.update(sql, preparedStatement -> {
+            preparedStatement.setLong(1, id);
+            preparedStatement.setBigDecimal(2, money);
+            preparedStatement.setLong(3, id);
+        });
+    }
+
+    @Override//ff
+    public boolean userIdExists(long userId) {
+        String sql = "select * from users where id = ?;";
+        return this.jdbcTemplate.query(sql, preparedStatement -> preparedStatement.setLong(1, userId), rowMapper).size() > 0;
+    }
 }
 

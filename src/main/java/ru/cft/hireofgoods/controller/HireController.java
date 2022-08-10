@@ -6,6 +6,7 @@ import ru.cft.hireofgoods.repository.model.HireEntity;
 import ru.cft.hireofgoods.service.HireService;
 
 
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -26,10 +27,8 @@ public class HireController {
     }
 
     @PostMapping("create-item")
-    public void postNewItem(@RequestBody HireEntity hireEntity) {
-        this.hireService.createItem(hireEntity.getItemName(),
-                                    hireEntity.getTraderId(),
-                                    hireEntity.getCost());
+    public void postNewItem(@RequestParam String name, @RequestParam long id, @RequestParam BigDecimal cost) {
+        this.hireService.createItem(name, id, cost);
     }
 
     @GetMapping("get/all-free-offers")
@@ -37,4 +36,18 @@ public class HireController {
         return hireService.getAllFreeOffers();
     }
 
+    @PostMapping("hire-item")
+    public void hireItem(@RequestParam long itemId, @RequestParam long consumerId){
+        this.hireService.hireItem(itemId, consumerId);
+    }
+
+    @PostMapping("return-item")
+    public void returnItem(@RequestParam long itemId){
+        this.hireService.returnItem(itemId);
+    }
+
+    @GetMapping("return-all-users-hires")
+    public List<HireEntity> getAllUsersOffers(@RequestParam long userId){
+        return this.hireService.returnAllUsersHires(userId);
+    }
 }
