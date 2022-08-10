@@ -15,7 +15,7 @@ public class HireRepositoryImpl implements HireRepository {
     private JdbcTemplate jdbcTemplate;
     private RowMapper<HireEntity> rowMapper;
 
-    @Autowired
+    @Autowired//
     public HireRepositoryImpl(JdbcTemplate jdbcTemplate, RowMapper<HireEntity> rowMapper){
         this.jdbcTemplate = jdbcTemplate;
         this.rowMapper = rowMapper;
