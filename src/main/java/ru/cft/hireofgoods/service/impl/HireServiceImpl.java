@@ -48,7 +48,7 @@ public class HireServiceImpl implements HireService {
         } else if (!(hireRepository.itemStateIsFree(itemId) && hireRepository.itemExists(itemId))){
             System.out.println("PRODUCT IS HIRED TO SBD OR ITEM DOESN'T EXISTS");
         } else if (hireRepository.consumerIdEqualsTraderIdByItemId(itemId, consumerId)) {
-            System.out.println("CONSUMER_ID EQUALS TRADER_ID");
+            System.out.println("CONSUMER_ID EQUALS TRADER_ID"); /////////
         } else {
             this.hireRepository.hireItem(itemId, consumerId);
         }//TODO
